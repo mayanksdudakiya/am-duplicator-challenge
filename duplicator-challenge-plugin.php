@@ -2,14 +2,14 @@
 
 /**
  * Plugin Name: Duplicator Challenge Plugin
- * Plugin URI:
+ * Plugin URI: https://github.com/mayanksdudakiya/am-duplicator-challenge
  * Description: Duplicator Challenge Plugin
  * Version: 1.0.0
  * Requires at least: 5.2
  * Tested up to: 6.2.2
  * Requires PHP: 5.6.20
- * Author:
- * Author URI:
+ * Author: Mayank Dudakiya
+ * Author URI: https://github.com/mayanksdudakiya
  * Update URI:
  * Text Domain: dup-challenge
  */

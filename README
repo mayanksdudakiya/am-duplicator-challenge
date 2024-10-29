@@ -1,0 +1,64 @@
+# Duplicator Challenge
+
+This plugin serves as the foundation for solving the **Duplicator Challenge**, aimed at evaluating backend development skills.
+
+## Setup
+- Before starting, update the `Author` and `Author URI` fields in the plugin header with your details if you wish.
+
+## Objective
+This test assesses backend development proficiency with a focus on:
+- Object-oriented programming (OOP)
+- Database table design and optimization
+- Error handling and ensuring code robustness
+
+## Challenge Details
+
+### Task
+1. **File Scanning Function**:
+   - Implement a function that scans all files in the WordPress root directory.
+   - For each entry, store:
+     - **Files**: Save the file size and consider the node count as 1.
+     - **Folders**: Save the total size and node count of all files, subfolders, and contained elements.
+  
+2. **Data Persistence**:
+   - Save the scan results in a custom database table.
+   - Structure the database so that in the future it could support:
+     - File searching by path.
+     - Retrieving a list of child files/folders for a given node.
+
+3. **Performance Considerations**:
+   - Ensure that the scanning function works on large sites.
+   - Implement chunk management to avoid timeouts during scans.
+
+4. **Plugin Page**:
+   - Add a **Scan** button on the plugin’s main page.
+   - When clicked, this button should clear the existing table and regenerate the scan.
+   - The scan result should be displayed on the same page (a simple array dump is sufficient for backend evaluation).
+
+5. **Data Cleanup**:
+   - Upon plugin deactivation, all data related to the plugin, including the database table, should be removed.
+
+### Optional Enhancements
+If you complete the main task and have additional time, consider implementing the following features:
+
+1. **Scheduled Scans**:
+   - Add a settings page field allowing users to set up automatic scans via WP-Cron every X hours.
+   - Ensure that the chunked scan function can run in the background without relying on JavaScript.
+
+2. **Search Functionality**:
+   - Implement a search feature on the results page, allowing users to search by path or use wildcards (*), or even regular expressions.
+
+3. **Enhanced Visualization**:
+   - If desired, improve the display by presenting the scan result in a tree structure.
+   - It is acceptable to use an external JavaScript library for tree management.
+
+### Constraints
+- **No External Libraries**: Only native PHP and WordPress core functions are allowed.
+- **Code Formatting**: Ensure your code passes the `composer phpcs .` command with no errors.
+  - The coding style requires PHPDoc comments for each function.
+  - Run the following commands for setup and formatting:
+    - `composer install` – to install PHP CodeSniffer (PHPCS)
+    - `composer phpcs .` – to check code formatting
+    - `composer phpcbf .` – to fix fixable format issues
+- **PHP Version**: Ensure compatibility with PHP 5.6.20.
+

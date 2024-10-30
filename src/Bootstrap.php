@@ -2,6 +2,7 @@
 
 namespace DupChallenge;
 
+use DupChallenge\Actions\BackupScan;
 use DupChallenge\Controllers\AdminPagesController;
 
 class Bootstrap
@@ -15,6 +16,7 @@ class Bootstrap
     {
         Install::register();
         Unistall::register();
+        BackupScan::getInstance();
 
         add_action('admin_init', [__CLASS__, 'hookAdminInit']);
         add_action('admin_menu', [__CLASS__, 'menuInit']);

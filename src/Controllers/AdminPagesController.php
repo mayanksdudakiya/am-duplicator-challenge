@@ -43,7 +43,8 @@ class AdminPagesController extends AbstractController
 
         wp_localize_script(
             'duplicator-challenge-admin-scripts',
-            'duplicator_admin_script_data', [
+            'duplicator_admin_script_data',
+            [
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'duplicator_scan_directories_and_files_nonce' => wp_create_nonce('duplicator_scan_directories_and_files')
             ]

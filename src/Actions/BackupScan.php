@@ -81,7 +81,7 @@ class BackupScan
 
                 if (is_dir($newPath)) {
                     $this->scannedResult[] = [
-                        'type' => 'folder',
+                        'type' => FileAndDirectoryHelper::TYPE_DIRECTORY,
                         'name' => $fileOrDirectory,
                         'size' => FileAndDirectoryHelper::getDirectorySize($newPath),
                         'path' => $newPath
@@ -90,7 +90,7 @@ class BackupScan
                     $this->scanner($newPath);
                 } else {
                     $this->scannedResult[] = [
-                        'type' => 'file',
+                        'type' => FileAndDirectoryHelper::TYPE_FILE,
                         'name' => $fileOrDirectory,
                         'size' => filesize($newPath),
                         'path' => $newPath

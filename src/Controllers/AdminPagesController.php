@@ -31,12 +31,22 @@ class AdminPagesController extends AbstractController
             return;
         }
 
+        wp_enqueue_script('jquery');
+
         wp_enqueue_script(
             'duplicator-challenge-admin-scripts',
             DUP_CHALLENGE_URL . '/assets/js/admin.js',
-            [],
+            ['jquery'],
             DUP_CHALLENGE_VERSION,
             true
+        );
+
+        wp_localize_script(
+            'duplicator-challenge-admin-scripts',
+            'duplicator_admin_script_data', [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'duplicator_scan_directories_and_files_nonce' => wp_create_nonce('duplicator_scan_directories_and_files')
+            ]
         );
     }
 

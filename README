@@ -62,3 +62,13 @@ If you complete the main task and have additional time, consider implementing th
     - `composer phpcbf .` – to fix fixable format issues
 - **PHP Version**: Ensure compatibility with PHP 5.6.20.
 
+
+
+#### CUSTOM SETTINGS TO SUPPORT PHP 5.6
+- Installed WordPress 6.2.2
+- Installed PHP 5.6
+- Set default authentication plugin default_authentication_plugin = mysql_native_password in `/etc/mysql/mysql.conf.d/sudo nano mysqld.cnf` 
+- Restart mysql server `sudo service mysql restart`
+
+
+

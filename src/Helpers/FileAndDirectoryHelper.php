@@ -7,6 +7,10 @@ use RecursiveIteratorIterator;
 
 class FileAndDirectoryHelper
 {
+    public const TYPE_FILE = 'file';
+
+    public const TYPE_DIRECTORY = 'folder';
+
     /**
      * Get the size of directory
      * @param $directoryPath Provide directory path to get the size

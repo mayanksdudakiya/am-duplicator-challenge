@@ -19,7 +19,7 @@ This test assesses backend development proficiency with a focus on:
    - For each entry, store:
      - **Files**: Save the file size and consider the node count as 1.
      - **Folders**: Save the total size and node count of all files, subfolders, and contained elements.
-  
+
 2. **Data Persistence**:
    - Save the scan results in a custom database table.
    - Structure the database so that in the future it could support:
@@ -62,13 +62,19 @@ If you complete the main task and have additional time, consider implementing th
     - `composer phpcbf .` – to fix fixable format issues
 - **PHP Version**: Ensure compatibility with PHP 5.6.20.
 
+### Steps followed to support PHP 5.6
 
-
-#### CUSTOM SETTINGS TO SUPPORT PHP 5.6
+#### WordPress 6.2.2
 - Installed WordPress 6.2.2
 - Installed PHP 5.6
-- Set default authentication plugin default_authentication_plugin = mysql_native_password in `/etc/mysql/mysql.conf.d/sudo nano mysqld.cnf` 
+- Set default authentication plugin default_authentication_plugin = mysql_native_password in `/etc/mysql/mysql.conf.d/sudo nano mysqld.cnf`
 - Restart mysql server `sudo service mysql restart`
 
-
-
+#### Composer 2.2
+1. curl -sS https://getcomposer.org/download/2.2.0/composer.phar -o composer.phar
+2. chmod +x composer.phar
+3. sudo mv composer.phar /usr/local/bin/composer
+4. composer --version
+5. Now, open php.ini and add UTC in date.timezon
+- `sudo nano /etc/php/5.6/cli/php.ini`
+- date.timezone = "UTC"

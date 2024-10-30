@@ -2,11 +2,14 @@
 
 namespace DupChallenge\Actions;
 
+use DupChallenge\Helpers\FileAndDirectoryHelper;
 use Exception;
 
 class BackupScan
 {
     private static $instance = null;
+
+    private $scannedResult = [];
 
     /**
      * Class constructor
@@ -47,7 +50,55 @@ class BackupScan
                 throw new Exception('Invalid request');
             }
 
-            wp_send_json_success(['message' => 'test']);
+            $scanDir = $this->scanner();
+
+            wp_send_json_success(['message' => $scanDir]);
+        } catch (Exception $e) {
+            wp_send_json_error($e->getMessage());
+        }
+    }
+
+    /**
+    * Scan directory by provided path
+    * @param string $path Provide directory path to scan
+    * @return array
+    */
+    private function scanner($path = ABSPATH)
+    {
+        try {
+            if (!file_exists($path)) {
+                throw new Exception('Invalid directory or file');
+            }
+
+            $scannedResult = scandir($path);
+
+            foreach ($scannedResult as $fileOrDirectory) {
+                if ($fileOrDirectory === '.' || $fileOrDirectory === '..') {
+                    continue;
+                }
+
+                $newPath = $path . DIRECTORY_SEPARATOR . $fileOrDirectory;
+
+                if (is_dir($newPath)) {
+                    $this->scannedResult[] = [
+                        'type' => 'folder',
+                        'name' => $fileOrDirectory,
+                        'size' => FileAndDirectoryHelper::getDirectorySize($newPath),
+                        'path' => $newPath
+                    ];
+
+                    $this->scanner($newPath);
+                } else {
+                    $this->scannedResult[] = [
+                        'type' => 'file',
+                        'name' => $fileOrDirectory,
+                        'size' => filesize($newPath),
+                        'path' => $newPath
+                    ];
+                }
+            }
+
+            return $this->scannedResult;
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage());
         }

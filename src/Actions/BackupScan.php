@@ -63,7 +63,7 @@ class BackupScan
     * @param string $path Provide directory path to scan
     * @return array
     */
-    private function scanner($path = ABSPATH, $owner = '')
+    private function scanner($path = ABSPATH, $owner = null)
     {
         try {
             if (!file_exists($path)) {

@@ -7,9 +7,9 @@ use RecursiveIteratorIterator;
 
 class FileAndDirectoryHelper
 {
-    public const TYPE_FILE = 1;
+    const TYPE_FILE = 1;
 
-    public const TYPE_DIRECTORY = 0;
+    const TYPE_DIRECTORY = 0;
 
     /**
      * Get the size of directory

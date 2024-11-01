@@ -63,7 +63,7 @@ class BackupScan
     * @param string $path Provide directory path to scan
     * @return array
     */
-    private function scanner($path = ABSPATH)
+    private function scanner($path = ABSPATH, $owner = '')
     {
         try {
             if (!file_exists($path)) {
@@ -84,16 +84,18 @@ class BackupScan
                         'type' => FileAndDirectoryHelper::TYPE_DIRECTORY,
                         'name' => $fileOrDirectory,
                         'size' => FileAndDirectoryHelper::getDirectorySize($newPath),
-                        'path' => $newPath
+                        'path' => $newPath,
+                        'owner' => $owner,
                     ];
 
-                    $this->scanner($newPath);
+                    $this->scanner($newPath, $fileOrDirectory);
                 } else {
                     $this->scannedResult[] = [
                         'type' => FileAndDirectoryHelper::TYPE_FILE,
                         'name' => $fileOrDirectory,
                         'size' => filesize($newPath),
-                        'path' => $newPath
+                        'path' => $newPath,
+                        'owner' => $owner,
                     ];
                 }
             }

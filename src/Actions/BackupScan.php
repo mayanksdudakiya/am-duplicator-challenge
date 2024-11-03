@@ -51,7 +51,9 @@ class BackupScan
                 throw new Exception('Invalid request');
             }
 
+            DupDb::cleanScanLogTable();
             $scanDir = $this->scanner();
+            DupDb::insertScanLogsInChunks($scanDir);
 
             wp_send_json_success(['message' => $scanDir]);
         } catch (Exception $e) {
@@ -70,8 +72,6 @@ class BackupScan
             if (!file_exists($path)) {
                 throw new Exception('Invalid directory or file');
             }
-
-            DupDb::cleanScanLogTable();
 
             $scannedResult = scandir($path);
 

@@ -40,6 +40,7 @@ class Install
             type TINYINT(1) NOT NULL,
             owner VARCHAR(256) NULL,
             size BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
+            nodes BIGINT(20) UNSIGNED NOT NULL,
             PRIMARY KEY  (id),
             INDEX (owner)
         ) $charset_collate;";

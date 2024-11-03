@@ -1,1 +1,5 @@
 /* STYLES */
+#scan-log-area {
+    overflow: auto;
+    max-height: 550px;
+}

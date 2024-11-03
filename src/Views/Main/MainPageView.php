@@ -22,6 +22,10 @@ class MainPageView
             </p>
 
             <button class="button action" id="btn-directory-and-files-scan">Scan</button>
+
+            <hr />
+
+            <div id="scan-log-area"></div>
         </div>
         <?php
     }

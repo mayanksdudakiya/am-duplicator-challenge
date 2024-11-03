@@ -37,7 +37,7 @@ class AdminPagesController extends AbstractController
             'duplicator-challenge-admin-scripts',
             DUP_CHALLENGE_URL . '/assets/js/admin.js',
             ['jquery'],
-            DUP_CHALLENGE_VERSION,
+           // DUP_CHALLENGE_VERSION,
             true
         );
 

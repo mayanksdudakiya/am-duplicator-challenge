@@ -6,7 +6,7 @@ use DupChallenge\Helpers\FileAndDirectoryHelper;
 use DupChallenge\Utils\DupDb;
 use Exception;
 
-class BackupScan
+final class BackupScan
 {
     private static $instance = null;
 

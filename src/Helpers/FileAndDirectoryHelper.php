@@ -11,6 +11,11 @@ class FileAndDirectoryHelper
 
     const TYPE_DIRECTORY = 0;
 
+    const SCAN_TYPES = [
+        self::TYPE_FILE => 'File',
+        self::TYPE_DIRECTORY => 'Directory',
+    ];
+
     /**
      * Get the size of directory
      * @param $directoryPath Provide directory path to get the size

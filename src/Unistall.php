@@ -2,6 +2,8 @@
 
 namespace DupChallenge;
 
+use DupChallenge\Utils\DupDb;
+
 /**
  * Uninstall class
  */
@@ -26,5 +28,9 @@ class Unistall
      */
     public static function deactivate()
     {
+        global $wpdb;
+
+        $tableName = $wpdb->prefix . DupDb::SCAN_TABLE;
+        $wpdb->query("DROP TABLE IF EXISTS `{$tableName}`");
     }
 }

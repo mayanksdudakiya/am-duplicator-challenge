@@ -77,7 +77,7 @@ class BackupScan
                     continue;
                 }
 
-                $newPath = $path . DIRECTORY_SEPARATOR . $fileOrDirectory;
+                $newPath = trailingslashit($path)  . $fileOrDirectory;
 
                 if (is_dir($newPath)) {
                     $this->scannedResult[] = [
@@ -86,6 +86,7 @@ class BackupScan
                         'size' => FileAndDirectoryHelper::getDirectorySize($newPath),
                         'path' => $newPath,
                         'owner' => $owner,
+                        'nodes' => $this->nodeCounts($newPath)
                     ];
 
                     $this->scanner($newPath, $fileOrDirectory);
@@ -96,6 +97,7 @@ class BackupScan
                         'size' => filesize($newPath),
                         'path' => $newPath,
                         'owner' => $owner,
+                        'nodes' => 1,
                     ];
                 }
             }
@@ -104,5 +106,27 @@ class BackupScan
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage());
         }
+    }
+
+    public function nodeCounts($directory)
+    {
+        $count = 0;
+        $contents = scandir($directory);
+
+        foreach ($contents as $item) {
+            if ($item === '.' || $item === '..') {
+                continue;
+            }
+
+            $path = $directory . DIRECTORY_SEPARATOR . $item;
+
+            $count++;
+
+            if (is_dir($path)) {
+                $count += $this->nodeCounts($path);
+            }
+        }
+
+        return $count;
     }
 }

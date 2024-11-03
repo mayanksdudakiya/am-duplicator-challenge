@@ -3,6 +3,7 @@
 namespace DupChallenge\Actions;
 
 use DupChallenge\Helpers\FileAndDirectoryHelper;
+use DupChallenge\Utils\DupDb;
 use Exception;
 
 class BackupScan
@@ -69,6 +70,8 @@ class BackupScan
             if (!file_exists($path)) {
                 throw new Exception('Invalid directory or file');
             }
+
+            DupDb::cleanScanLogTable();
 
             $scannedResult = scandir($path);
 

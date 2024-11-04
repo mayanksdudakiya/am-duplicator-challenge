@@ -11,14 +11,15 @@ jQuery(document).ready(function ($) {
                 nonce: duplicator_admin_script_data.duplicator_scan_directories_and_files_nonce,
             },
             success: function (result, textStatus, jqXHR) {
-                console.log(result.success);
-                console.log(result.data.message);
                 if (result.success) {
                     const jsonOutput = JSON.stringify(result.data.message, null, 2);
                     jQuery('#scan-log-area').html(`<pre>${jsonOutput}</pre>`);
                 }
+
+                // Handle error if any - pass
             },
             error: function (result, textStatus, error) {
+                // Printing error on page - pass
                 console.log('error called');
                 console.log(result);
                 console.log(error);

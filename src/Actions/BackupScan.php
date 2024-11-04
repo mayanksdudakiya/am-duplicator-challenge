@@ -81,26 +81,26 @@ final class BackupScan
                     continue;
                 }
 
-                $newPath = trailingslashit($path)  . $fileOrDirectory;
+                $currentPath = trailingslashit($path)  . $fileOrDirectory;
 
-                if (is_dir($newPath)) {
+                if (is_dir($currentPath)) {
                     $this->scannedResult[] = [
                         'type' => FileAndDirectoryHelper::TYPE_DIRECTORY,
                         'name' => $fileOrDirectory,
-                        'size' => FileAndDirectoryHelper::getDirectorySize($newPath),
-                        'path' => $newPath,
-                        'owner' => $parentDirectory,
-                        'nodes' => $this->nodeCounts($newPath)
+                        'size' => FileAndDirectoryHelper::getDirectorySize($currentPath),
+                        'path' => $currentPath,
+                        'parent_directory' => $parentDirectory,
+                        'nodes' => $this->nodeCounts($currentPath)
                     ];
 
-                    $this->scanner($newPath, $fileOrDirectory);
+                    $this->scanner($currentPath, $fileOrDirectory);
                 } else {
                     $this->scannedResult[] = [
                         'type' => FileAndDirectoryHelper::TYPE_FILE,
                         'name' => $fileOrDirectory,
-                        'size' => filesize($newPath),
-                        'path' => $newPath,
-                        'owner' => $parentDirectory,
+                        'size' => filesize($currentPath),
+                        'path' => $currentPath,
+                        'parent_directory' => $parentDirectory,
                         'nodes' => 1,
                     ];
                 }

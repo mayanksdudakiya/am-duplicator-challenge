@@ -38,11 +38,11 @@ class Install
             id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
             path TEXT NOT NULL,
             type TINYINT(1) NOT NULL,
-            owner VARCHAR(256) NULL,
+            parent_directory VARCHAR(256) NULL,
             size BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
             nodes BIGINT(20) UNSIGNED NOT NULL,
             PRIMARY KEY  (id),
-            INDEX (owner)
+            INDEX (parent_directory)
         ) $charset_collate;";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');

@@ -44,13 +44,13 @@ final class DupDb
                     "('%s', %s, '%s', '%d', %d)",
                     esc_sql($item['path']),
                     esc_sql($item['type']),
-                    esc_sql($item['owner']),
+                    esc_sql($item['parent_directory']),
                     esc_sql($item['size']),
                     esc_sql($item['nodes'])
                 );
             }
 
-            $query = "INSERT INTO $scanLogTbl (path, type, owner, size, nodes) VALUES " . implode(", ", $insertValues);
+            $query = "INSERT INTO $scanLogTbl (path, type, parent_directory, size, nodes) VALUES " . implode(", ", $insertValues);
             $wpdb->query($query);
         }
     }

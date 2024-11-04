@@ -63,7 +63,8 @@ final class BackupScan
 
     /**
     * Scan directory by provided path
-    * @param string $path Provide directory path to scan
+    * @param string $path  Provide directory path to scan
+    * @param string $owner Parent folder name
     * @return array
     */
     private function scanner($path = ABSPATH, $owner = null)
@@ -111,6 +112,11 @@ final class BackupScan
         }
     }
 
+    /**
+    * Count all fies, sub folders and elements in directory
+    * @param string $directory Path of directory
+    * @return int
+    */
     public function nodeCounts($directory)
     {
         $count = 0;

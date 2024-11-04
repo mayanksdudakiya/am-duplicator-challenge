@@ -6,6 +6,10 @@ final class DupDb
 {
     const SCAN_TABLE = 'dup_scan_logs';
 
+    /**
+     * Remove records from scan log table
+     * @return void
+     */
     public static function cleanScanLogTable()
     {
         global $wpdb;
@@ -14,6 +18,11 @@ final class DupDb
         $wpdb->query("TRUNCATE TABLE `{$scanLogTbl}`");
     }
 
+    /**
+     * create scan logs in chunks
+     * @param array $dataInArray Provide data in array
+     * @return void
+     */
     public static function insertScanLogsInChunks($dataInArray)
     {
         global $wpdb;

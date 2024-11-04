@@ -64,10 +64,10 @@ final class BackupScan
     /**
     * Scan directory by provided path
     * @param string $path  Provide directory path to scan
-    * @param string $owner Parent folder name
+    * @param string $parentDirectory Parent folder name
     * @return array
     */
-    private function scanner($path = ABSPATH, $owner = null)
+    private function scanner($path = ABSPATH, $parentDirectory = null)
     {
         try {
             if (!file_exists($path)) {
@@ -89,7 +89,7 @@ final class BackupScan
                         'name' => $fileOrDirectory,
                         'size' => FileAndDirectoryHelper::getDirectorySize($newPath),
                         'path' => $newPath,
-                        'owner' => $owner,
+                        'owner' => $parentDirectory,
                         'nodes' => $this->nodeCounts($newPath)
                     ];
 
@@ -100,7 +100,7 @@ final class BackupScan
                         'name' => $fileOrDirectory,
                         'size' => filesize($newPath),
                         'path' => $newPath,
-                        'owner' => $owner,
+                        'owner' => $parentDirectory,
                         'nodes' => 1,
                     ];
                 }
@@ -117,7 +117,7 @@ final class BackupScan
     * @param string $directory Path of directory
     * @return int
     */
-    public function nodeCounts($directory)
+    private function nodeCounts($directory)
     {
         $count = 0;
         $contents = scandir($directory);

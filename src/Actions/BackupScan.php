@@ -63,7 +63,7 @@ final class BackupScan
 
     /**
     * Scan directory by provided path
-    * @param string $path  Provide directory path to scan
+    * @param string $path            Provide directory path to scan
     * @param string $parentDirectory Parent folder name
     * @return array
     */

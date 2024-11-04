@@ -18,7 +18,7 @@ final class DupDb
     {
         global $wpdb;
 
-        if ( ! is_array($dataInArray) && ! empty($dataInArray) ) {
+        if (! is_array($dataInArray) && ! empty($dataInArray)) {
             return;
         }
 
